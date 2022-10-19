@@ -22,13 +22,13 @@ div.innerHTML = list; // помістив список в div
 
 const img = document.createElement('img'); // створив елемент img
 
-// img.src = 'https://picsum.photos/240' // додав посилання на фото
-img.width = 240; // задав ширину
+//  img.src = 'https://picsum.photos/240' // додав посилання на фото
+// img.width = 240; // задав ширину
 
 // img.classList.add('super'); // додав клас для img
 // img.alt = 'Super Man'; //
 
-// div.appendChild(img);
+div.appendChild(img);
 
 const elHtml = `
     <div class='pDiv'>   
@@ -54,8 +54,8 @@ const generateAutoCard = (brand,year,color,) =>{
     <div class = 'autoCard'>
         <h2>${brand.toUpperCase()} ${year}</h2>
         <p>Car: <br> ${brand.toUpperCase()} ${year}  <br>Age of the car - ${curYear - year}</p>
-        <p>Color: ${color}</p.
-        <br><button type='button' class='btn'> Delete</button>
+        <p>Color: ${color}</p>
+        <br><button class='btn' type='button'>Delete</button>
     </div>
     </div>
    `;
@@ -78,5 +78,17 @@ carsDiv.innerHTML = carsHtml; //
 
 div.insertAdjacentElement('beforebegin', carsDiv);
 
+const buttons = document.querySelectorAll('button');
+// console.log(buttons);
 
+function handleClick(e){
+    const currentButton = e.currentTarget;
+    currentButton.closest('.autoCard').remove();
+    // currentButton.parentElement.remove(); // видаляє батьківський елемент, не використовувати, так як не завжди можна видалити весь елемент
+    // console.log(currentButton.parentElement);
+}
+// console.log(handleClick);
+buttons.forEach(button =>{
+    button.addEventListener('click', handleClick)
+})
 
